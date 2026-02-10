@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Logging...</title>
+</head>
+<body>
+
+<script>
+  // What was clicked
+  const action = new URLSearchParams(window.location.search).get("action") || "unknown";
+
+  // Timestamp
+  const time = new Date().toLocaleString();
+
+  // Store locally (persistent)
+  const logs = JSON.parse(localStorage.getItem("proposalLogs") || "[]");
+  logs.push({ action, time });
+  localStorage.setItem("proposalLogs", JSON.stringify(logs));
+
+  // OPTIONAL: redirect after logging
+  setTimeout(() => {
+    window.location.href = "https://wa.me/91XXXXXXXXXX?text=I%20said%20YES%20💖";
+  }, 800);
+</script>
+
+<p>Just a moment…</p>
+
+</body>
+</html>
