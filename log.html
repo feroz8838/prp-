@@ -5,28 +5,23 @@
 <h2 id="status">Logger loaded</h2>
 
 <script>
-  const action = new URLSearchParams(window.location.search).get("action");
-  document.getElementById("status").innerText = "Action = " + action;
+  const action = new URLSearchParams(window.location.search).get("action") || "UNKNOWN";
 
-  fetch("https://script.google.com/macros/s/AKfycbxQWDsYmnmxYQtr-KVtJ7KPbLG3E3lHPZaGp_Ps6VBQa1pd-cPVW7sS6qjgrZgblrHs/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbyyPSejVsjmPkElLbtt4fPFL3TtWIaqqE7cU0R94VUjmmyi6yR02QhgW6BXu1p4J7BK/exec", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "text/plain"
+    },
     body: JSON.stringify({
       action: action,
       userAgent: navigator.userAgent
     })
-  })
-  .then(res => {
-    document.getElementById("status").innerText += "\nPOST sent, status " + res.status;
-    return res.text();
-  })
-  .then(txt => {
-    document.getElementById("status").innerText += "\nResponse: " + txt;
-  })
-  .catch(err => {
-    document.getElementById("status").innerText += "\nERROR: " + err;
   });
+
+  document.body.innerHTML = "<h2>Recorded ❤️</h2>";
 </script>
+
 
 </body>
 </html>
