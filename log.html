@@ -8,7 +8,7 @@
   const action = new URLSearchParams(window.location.search).get("action");
   document.getElementById("status").innerText = "Action = " + action;
 
-  fetch("https://script.google.com/macros/s/AKfycbyW--JTmi5oJS-5rXC8pZ4WRz_FJHXzVrT76IPOSco/dev", {
+  fetch("https://script.google.com/macros/s/AKfycbwWi5rJ-24bJKrYdceNRYD65_7Vm7OuXFPiVyEQpo3Pc3jBn7vZLaFZZlsQHK-_28ZM/exec", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
