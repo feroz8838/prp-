@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>Just a moment…</title>
-</head>
 <body>
 
+<h2 id="status">Logger loaded</h2>
+
 <script>
-  const action = new URLSearchParams(window.location.search).get("action") || "UNKNOWN";
+  const action = new URLSearchParams(window.location.search).get("action");
+  document.getElementById("status").innerText = "Action = " + action;
 
   fetch("https://script.google.com/macros/s/AKfycbyW--JTmi5oJS-5rXC8pZ4WRz_FJHXzVrT76IPOSco/dev", {
     method: "POST",
@@ -16,13 +15,18 @@
       action: action,
       userAgent: navigator.userAgent
     })
-  }).finally(() => {
-    // Redirect after logging
-    window.location.href = "https://wa.me/91XXXXXXXXXX?text=I%20said%20YES%20💖";
+  })
+  .then(res => {
+    document.getElementById("status").innerText += "\nPOST sent, status " + res.status;
+    return res.text();
+  })
+  .then(txt => {
+    document.getElementById("status").innerText += "\nResponse: " + txt;
+  })
+  .catch(err => {
+    document.getElementById("status").innerText += "\nERROR: " + err;
   });
 </script>
-
-<p>Saving your answer… ❤️</p>
 
 </body>
 </html>
