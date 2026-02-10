@@ -2,27 +2,27 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Logging...</title>
+  <title>Just a moment…</title>
 </head>
 <body>
 
 <script>
-  // What was clicked
-  const action = new URLSearchParams(window.location.search).get("action") || "unknown";
+  const action = new URLSearchParams(window.location.search).get("action") || "UNKNOWN";
 
-  // Timestamp
-  const time = new Date().toLocaleString();
-
-  // Store locally (persistent)
-  const logs = JSON.parse(localStorage.getItem("proposalLogs") || "[]");
-  logs.push({ action, time });
-  localStorage.setItem("proposalLogs", JSON.stringify(logs));
-
-  // OPTIONAL: redirect after logging
-
+  fetch("https://script.google.com/macros/s/AKfycbzioRbge62RIWyjiG9R5_Syp_L5oJx6W8D6EPOnlaNZAvhweuJ-EWEYZwjTWxcaEycs/exec", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      action: action,
+      userAgent: navigator.userAgent
+    })
+  }).finally(() => {
+    // Redirect after logging
+    window.location.href = "https://wa.me/91XXXXXXXXXX?text=I%20said%20YES%20💖";
+  });
 </script>
 
-<p>Just a moment…</p>
+<p>Saving your answer… ❤️</p>
 
 </body>
 </html>
