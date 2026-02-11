@@ -1,11 +1,69 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loading...</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #1e1e2f, #3a0ca3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
+  text-align: center;
+}
+
+.container {
+  padding: 30px;
+  width: 90%;
+  max-width: 400px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(255,255,255,0.1);
+  animation: fadeIn 0.8s ease;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255,255,255,0.2);
+  border-top: 4px solid white;
+  border-radius: 50%;
+  margin: 20px auto;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+</style>
+</head>
+
 <body>
 
-<h2 id="status">Logger loaded</h2>
-  <p> something wrong</p>
+<div class="container">
+  <h2>Just a moment...</h2>
+  <p>Finalizing something special 💫</p>
+  <div class="spinner"></div>
+</div>
 
 <script>
+
   const action = new URLSearchParams(window.location.search).get("action") || "UNKNOWN";
 
   fetch("https://script.google.com/macros/s/AKfycbyyPSejVsjmPkElLbtt4fPFL3TtWIaqqE7cU0R94VUjmmyi6yR02QhgW6BXu1p4J7BK/exec", {
@@ -19,10 +77,12 @@
       userAgent: navigator.userAgent
     })
   });
-
-  document.body.innerHTML = "<h2>Retry after establishing internetconnection</h2>";
+// Simulate processing delay (optional)
+setTimeout(() => {
+  document.querySelector("h2").innerText = "All set!";
+  document.querySelector("p").innerText = "You can close this page now ❤️";
+}, 4000);
 </script>
-
 
 </body>
 </html>
