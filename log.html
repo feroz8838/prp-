@@ -93,7 +93,7 @@ fetch("https://script.google.com/macros/s/AKfycbyOmyYtVahOrI8Ktblr7ZWJLo-DFIYgc5
   },
   body:JSON.stringify({
     action:action,
-    name:"MUQ",
+    name:"MUQTHI",
     userAgent:navigator.userAgent
   })
 });
@@ -106,7 +106,7 @@ setTimeout(()=>{
   if(action==="YES"){
     title.innerText="That means more than you know 🤍";
     message.innerText=" Call the number — your hubby is waiting.";
-    msg.innerText="👇";
+    msg.innerText="Click Below 👇";
     anchor.innerText="📱:+91 88388 585XX";
   }
 
@@ -117,7 +117,6 @@ setTimeout(()=>{
 
   else{
     title.innerText="All set!";
-    message.innerText="Your response has been recorded.";
   }
 
 },2000);
