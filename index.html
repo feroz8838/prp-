@@ -1,206 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Just a Story</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"> 
+<title>Ek ajeeb si baat</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: "Segoe UI", system-ui, sans-serif;
-    }
+<style>
 
-    body {
-      margin: 0;
-      background: linear-gradient(135deg, #fdfbfb, #ebedee);
-      color: #333;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+body{
+margin:0;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:linear-gradient(135deg,#ff4d6d,#c9184a,#7209b7);
+color:white;
+text-align:center;
+font-family: 'Poppins',sans-serif;
+}
 
-    .container {
-      width: 92%;
-      max-width: 420px;
-      background: white;
-      border-radius: 18px;
-      padding: 24px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-      animation: fadeIn 0.8s ease;
-    }
+.card{
+width:90%;
+max-width:420px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(12px);
+padding:32px;
+border-radius:18px;
+box-shadow:0 15px 45px rgba(0,0,0,0.35);
+animation:fade 0.7s ease;
+}
 
-    h1, h2 {
-      font-weight: 600;
-    }
+h1,h2{
+margin-bottom:14px;
+}
 
-    p {
-      line-height: 1.6;
-      margin-bottom: 18px;
-    }
+p{
+line-height:1.7;
+font-size:19px;
+opacity:0.95;
+}
 
-    button {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 12px;
-      font-size: 16px;
-      cursor: pointer;
-      background: #222;
-      color: white;
-      transition: transform 0.2s, background 0.2s;
-    }
+button{
+width:100%;
+padding:14px;
+margin-top:12px;
+border:none;
+border-radius:12px;
+font-size:16px;
+cursor:pointer;
+transition:0.25s;
+font-family: 'Poppins',sans-serif;
+}
 
-    button:hover {
-      transform: scale(1.02);
-      background: #000;
-    }
+.next{
+background:#ffffff;
+color:#333;
+}
 
-    .cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
+.next:hover{
+transform:scale(1.04);
+}
 
-    .card {
-      background: #f6f6f6;
-      border-radius: 14px;
-      padding: 16px;
-      text-align: center;
-      font-size: 14px;
-      cursor: pointer;
-      transition: transform 0.25s, background 0.25s;
-    }
+.yes{
+background:#ff4d6d;
+color:white;
+}
 
-    .card:hover {
-      transform: translateY(-4px);
-      background: #ececec;
-    }
+.maybe{
+background:#b5179e;
+color:white;
+}
 
-    .yes {
-      background: #2ecc71;
-    }
+button:hover{
+transform:scale(1.05);
+}
 
-    .maybe {
-      background: #f1c40f;
-      color: #333;
-      margin-top: 12px;
-    }
+@keyframes fade{
+from{opacity:0;transform:translateY(15px)}
+to{opacity:1;transform:translateY(0)}
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+</style>
 </head>
 
 <body>
 
-<div class="container" id="app"></div>
+<div class="card" id="app"></div>
 
 <script>
-  const app = document.getElementById("app");
 
-  function screen(content) {
-    app.innerHTML = content;
-  }
+const app=document.getElementById("app")
 
-  // Screen 1
-  screen(`
-    <h1>This isn’t a proposal.</h1>
-    <p>
-      It’s just a story.<br>
-      No pressure. No tricks.
-    </p>
-    <button onclick="memories()">Okay, tell me</button>
-  `);
+function screen(html){
+app.innerHTML=html
+}
 
-  function memories() {
-    screen(`
-      <h2>How we got here</h2>
-      <p>These moments don’t belong in order.<br>Pick any one.</p>
-      <div class="cards">
-        <div class="card" onclick="story(1)">The quiet comfort</div>
-        <div class="card" onclick="story(2)">That stupid joke</div>
-        <div class="card" onclick="story(3)">When you stayed</div>
-        <div class="card" onclick="story(4)">The version of me</div>
-      </div>
-    `);
-  }
+/* SCREEN 1 */
 
-  function story(n) {
-    const texts = {
-      1: `I don’t remember the date.<br>
-          I remember feeling safe being quiet around you.<br>
-          That was new for me.`,
-      2: `You laughed at a joke that honestly wasn’t funny.<br>
-          That’s when I knew you were kind.`,
-      3: `You stayed when it would’ve been easier not to.<br>
-          That mattered more than you know.`,
-      4: `Somehow, without trying,<br>
-          you helped me become someone I like.`
-    };
+screen(`
+<h1>Yeh thoda awkward hai...</h1>
 
-    screen(`
-      <p>${texts[n]}</p>
-      <p style="opacity:0.7">
-        Also… you still owe me for pretending my playlist was good.
-      </p>
-      <button onclick="realization()">Continue</button>
-    `);
-  }
+<p>
+Sach bolun to mujhe khud samajh nahi aaya<br>
+yeh kab start hua.
+</p>
 
-  function realization() {
-    screen(`
-      <p>
-        Somewhere between these moments,<br>
-        I stopped imagining a future alone.
-      </p>
-      <p>
-        And that scared me.<br>
-        Because it mattered.
-      </p>
-      <button onclick="question()">I’m still here</button>
-    `);
-  }
+<button class="next" onclick="s2()">Continue</button>
+`)
 
-  function question() {
-    screen(`
-      <p>
-        I don’t need a perfect answer.<br>
-        I just need honesty.
-      </p>
-      <button class="yes" onclick="answer('YES')">Yes, I feel it too</button>
-      <button class="maybe" onclick="answer('TIME')">
-        I need time — but I care
-      </button>
-    `);
-  }
+/* SCREEN 2 */
 
-  function answer(choice) {
-    if (choice === "YES") {
-        window.location.href='https://feroz8838.github.io/prp-/log.html?action=YES';
+function s2(){
+screen(`
+<p>
+Pehle to bas normal baatein hoti thi.<br>
+Random jokes... random conversations...
+</p>
 
-      screen(`
-        <h2>That means more than you know 🤍</h2>
-        <p>
-          Thank you for choosing me.<br>
-          I promise to keep choosing you too.
-        </p>
-      `);
-    } else {
-      screen(`
-        <h2>Thank you for being honest 🤍</h2>
-        <p>
-          Take all the time you need.<br>
-          I’m glad you’re here.
-        </p>
-      `);
+<p>
+Lekin phir pata nahi kab
+tum thodi zyada important ho gaye.
+</p>
 
-        window.location.href='https://feroz8838.github.io/prp-/log.html?action=NEEDTIME';
-    }
-  }
+<button class="next" onclick="s3()">Continue</button>
+`)
+}
+
+/* SCREEN 3 */
+
+function s3(){
+screen(`
+<p>
+Aur ab situation yeh hai ke<br>
+agar tum message na karo<br>
+to phone thoda zyada hi boring lagta hai.
+</p>
+
+<button class="next" onclick="s4()">Continue</button>
+`)
+}
+
+/* SCREEN 4 */
+
+function s4(){
+screen(`
+<p>
+To maine socha seedha pooch leta hoon.<br>
+Drama kam, honesty zyada.
+</p>
+
+<button class="next" onclick="question()">Continue</button>
+`)
+}
+
+/* FINAL QUESTION */
+
+function question(){
+screen(`
+<h2>Sach sach batao…</h2>
+
+<p>
+Kya tumhein bhi thoda sa feel aata hai? ,Meri Jaaan🤍
+</p>
+
+<button class="yes" onclick="answer('YES')">
+Haan yaar ❤️
+</button>
+
+<button class="maybe" onclick="answer('TIME')">
+Thoda time chahiye
+</button>
+`)
+}
+
+/* ANSWER FUNCTION (UNCHANGED) */
+
+function answer(choice){
+
+if(choice==="YES"){
+window.location.href='https://feroz8838.github.io/prp-/log.html?action=YES'
+}
+
+else{
+window.location.href='https://feroz8838.github.io/prp-/log.html?action=NEEDTIME'
+}
+
+}
+
 </script>
 
 </body>
