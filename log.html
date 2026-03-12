@@ -1,46 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Processing</title>
+
+<style>
+body{
+  margin:0;
+  font-family:"Segoe UI",system-ui,sans-serif;
+  background:linear-gradient(135deg,#fdfbfb,#ebedee);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:100vh;
+  color:#333;
+}
+
+.container{
+  width:92%;
+  max-width:420px;
+  background:white;
+  border-radius:18px;
+  padding:28px;
+  text-align:center;
+  box-shadow:0 15px 40px rgba(0,0,0,0.08);
+  animation:fadeIn 0.8s ease;
+}
+
+.spinner{
+  width:36px;
+  height:36px;
+  border:4px solid #eee;
+  border-top:4px solid #333;
+  border-radius:50%;
+  margin:18px auto;
+  animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+h2{
+  margin-bottom:10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+  <h2 id="title">Just a moment...</h2>
+  <p id="message">Saving your answer 💫</p>
+  <div class="spinner" id="spinner"></div>
+</div>
+
 <script>
+
+document.addEventListener("DOMContentLoaded", () => {
 
 const action = new URLSearchParams(window.location.search).get("action") || "UNKNOWN";
 
-const title = document.querySelector("h2");
-const message = document.querySelector("p");
+const title = document.getElementById("title");
+const message = document.getElementById("message");
+const spinner = document.getElementById("spinner");
 
-// Send data to Google Apps Script
-fetch("https://script.google.com/macros/s/AKfycbyyPSejVsjmPkElLbtt4fPFL3TtWIaqqE7cU0R94VUjmmyi6yR02QhgW6BXu1p4J7BK/exec", {
-  method: "POST",
-  mode: "no-cors",
-  headers: {
-    "Content-Type": "text/plain"
+// Send data to Apps Script
+fetch("https://script.google.com/macros/s/AKfycbyyPSejVsjmPkElLbtt4fPFL3TtWIaqqE7cU0R94VUjmmyi6yR02QhgW6BXu1p4J7BK/exec",{
+  method:"POST",
+  mode:"no-cors",
+  headers:{
+    "Content-Type":"text/plain"
   },
-  body: JSON.stringify({
-    action: action,
-    userAgent: navigator.userAgent
+  body:JSON.stringify({
+    action:action,
+    userAgent:navigator.userAgent
   })
 });
 
-// Change message based on action
-setTimeout(() => {
+// Show result after short delay
+setTimeout(()=>{
 
-  if(action === "YES"){
-    title.innerText = "Great choice!";
-    message.innerText = "📞 Call the number — your hubby is waiting ❤️";
+  spinner.style.display="none";
+
+  if(action==="YES"){
+    title.innerText="That means more than you know 🤍";
+    message.innerText="📞 Call the number — your hubby is waiting.";
   }
 
-  else if(action === "NO"){
-    title.innerText = "No worries!";
-    message.innerText = "Maybe next time 😊";
-  }
-
-  else if(action === "MAYBE"){
-    title.innerText = "Take your time!";
-    message.innerText = "Think about it and decide later 💭";
+  else if(action==="NEEDTIME"){
+    title.innerText="Take your time 🤍";
+    message.innerText="Honesty means everything.";
   }
 
   else{
-    title.innerText = "All set!";
-    message.innerText = "You can close this page now.";
+    title.innerText="All set!";
+    message.innerText="Your response has been recorded.";
   }
 
-}, 2000);
+},2000);
+
+});
 
 </script>
+
+</body>
+</html>
