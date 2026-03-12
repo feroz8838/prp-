@@ -65,6 +65,8 @@ h2{
   <h2 id="title">Just a moment...</h2>
   <p id="message">Saving your answer 💫</p>
   <div class="spinner" id="spinner"></div>
+  <p id="msg1"></p>
+  <a id="anchor" href="tel:+918838858540"></a>
 </div>
 
 <script>
@@ -76,6 +78,8 @@ const action = new URLSearchParams(window.location.search).get("action") || "UNK
 const title = document.getElementById("title");
 const message = document.getElementById("message");
 const spinner = document.getElementById("spinner");
+const anchor = document.getElementById("anchor");
+const msg= document.getElementById("msg1");
 
 // Send data to Apps Script
 fetch("https://script.google.com/macros/s/AKfycbyOmyYtVahOrI8Ktblr7ZWJLo-DFIYgc5352VJpPeRzuaoo9mcGOWB9mJHsVB2vsaQ/exec",{
@@ -98,7 +102,9 @@ setTimeout(()=>{
 
   if(action==="YES"){
     title.innerText="That means more than you know 🤍";
-    message.innerText="📞 Call the number — your hubby is waiting.";
+    message.innerText=" Call the number — your hubby is waiting.";
+    msg.innerText="👇";
+    anchor.innerText="📱:+91 88388 585XX";
   }
 
   else if(action==="NEEDTIME"){
