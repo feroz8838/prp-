@@ -76,8 +76,8 @@ h2{
 
 document.addEventListener("DOMContentLoaded", () => {
 
-const action = new URLSearchParams(window.location.search).get("action") || "UNKNOWN";
-
+const action = new URLSearchParams(window.location.search).get("action") || "NO-ANS";
+//const acname = new URLSearchParams(window.location.search).get("name") || "ANONYMOUS";
 const title = document.getElementById("title");
 const message = document.getElementById("message");
 const spinner = document.getElementById("spinner");
@@ -93,7 +93,7 @@ fetch("https://script.google.com/macros/s/AKfycbyOmyYtVahOrI8Ktblr7ZWJLo-DFIYgc5
   },
   body:JSON.stringify({
     action:action,
-    name:"MUQTHI",
+  //  name:acname,
     userAgent:navigator.userAgent
   })
 });
